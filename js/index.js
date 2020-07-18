@@ -15,14 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const changeVolume = (event) => {
-        let value = event.target.value;
-        video.volume = value / 100;
+        video.volume = event.target.value / 100;
+    };
+
+    const progressBarUpdate = () => {
+        playProgressBar.value = (video.currentTime / video.duration) * 100;
+    };
+
+    const videoRewind = () => {
+        video.currentTime = video.duration / 100 * playProgressBar.value
     };
 
     const addHandlers = () => {
         playButton.addEventListener('click', play);
         pauseButton.addEventListener('click', pause);
         volumeBar.addEventListener('input', changeVolume);
+        video.addEventListener('timeupdate', progressBarUpdate);
+        playProgressBar.addEventListener('input', videoRewind);
     };
 
     addHandlers();
