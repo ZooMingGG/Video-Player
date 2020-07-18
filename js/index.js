@@ -33,11 +33,19 @@ document.addEventListener('DOMContentLoaded', () => {
         video.currentTime = video.duration / 100 * playProgressBar.value;
     };
 
-    const fullscreen = () => {
+    const fullscreen = (event) => {
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                fullscreenButton.src = './images/expend-fullscreen-button.svg';
+            }
+        });
+
         if (!document.fullscreenElement) {
             videoPlayer.requestFullscreen();
+            event.target.src = './images/compress-fullscreen-button.svg';
         } else {
             document.exitFullscreen();
+            event.target.src = './images/expend-fullscreen-button.svg';
         }
     };
 

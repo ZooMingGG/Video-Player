@@ -9,14 +9,16 @@
 <body>
     <div id="video-player">
         <video id="video" src="./video/video_1.mp4"></video>
-        <button id="play-button">Play</button>
-        <button id="pause-button" class="hidden">Pause</button>
-        <input id="volume-bar" type="range" min="0" max="100">
-        <input id="play-progress-bar" type="range" value="0">
-        <button id="fullscreen-button" data-fullscreen="false">Fullscreen</button>
-        <button class="change-speed-button" data-value="0.5">0.5X</button>
-        <button class="change-speed-button" data-value="1">1X</button>
-        <button class="change-speed-button" data-value="2">2X</button>
+        <div id="controls">
+            <img src="./images/play-button.svg" alt="play-button-icon" id="play-button"></img>
+            <img src="./images/pause-button.svg" alt="pause-button-icon" id="pause-button" class="hidden"></img>
+            <input id="volume-bar" type="range" min="0" max="100">
+            <input id="play-progress-bar" type="range" value="0">
+            <img src="./images/expend-fullscreen-button.svg" alt="fullscreen-button-icon" id="fullscreen-button" data-fullscreen="false"></img>
+            <button class="change-speed-button" data-value="0.5">0.5X</button>
+            <button class="change-speed-button" data-value="1">1X</button>
+            <button class="change-speed-button" data-value="2">2X</button>
+        </div>
     </div>
     <script src="js/index.js"></script>
 </body>
