@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fullscreenButton = document.querySelector('#fullscreen-button');
     const volumeBar = document.querySelector('#volume-bar');
     const playProgressBar = document.querySelector('#play-progress-bar');
+    const controlPanel = document.querySelector('#controls');
     const changeSpeedButtons = document.querySelectorAll('.change-speed-button');
 
     const play = () => {
@@ -37,15 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('fullscreenchange', () => {
             if (!document.fullscreenElement) {
                 fullscreenButton.src = './images/expend-fullscreen-button.svg';
+                controlPanel.classList.remove('fullscreen-controls');
+                video.classList.remove('fullscreen-video');
             }
         });
 
         if (!document.fullscreenElement) {
             videoPlayer.requestFullscreen();
             event.target.src = './images/compress-fullscreen-button.svg';
+            controlPanel.classList.add('fullscreen-controls');
+            video.classList.add('fullscreen-video');
         } else {
             document.exitFullscreen();
             event.target.src = './images/expend-fullscreen-button.svg';
+            controlPanel.classList.remove('fullscreen-controls');
+            video.classList.remove('fullscreen-video');
         }
     };
 
