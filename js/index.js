@@ -11,10 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const play = () => {
         video.play();
+        playButton.classList.add('hidden');
+        pauseButton.classList.remove('hidden');
     };
 
     const pause = () => {
         video.pause();
+        pauseButton.classList.add('hidden');
+        playButton.classList.remove('hidden');
     };
 
     const changeVolume = (event) => {
@@ -26,16 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const videoRewind = () => {
-        video.currentTime = video.duration / 100 * playProgressBar.value
+        video.currentTime = video.duration / 100 * playProgressBar.value;
     };
 
-    const enterFullscreen = () => {
-        if (videoPlayer.requestFullscreen) {
+    const fullscreen = () => {
+        if (!document.fullscreenElement) {
             videoPlayer.requestFullscreen();
-        } else if (videoPlayer.mozRequestFullScreen) {
-            videoPlayer.mozRequestFullScreen();
-        } else if (videoPlayer.webkitRequestFullscreen) {
-            videoPlayer.webkitRequestFullscreen();
+        } else {
+            document.exitFullscreen();
         }
     };
 
@@ -49,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         volumeBar.addEventListener('input', changeVolume);
         video.addEventListener('timeupdate', progressBarUpdate);
         playProgressBar.addEventListener('input', videoRewind);
-        fullscreenButton.addEventListener('click', enterFullscreen);
+        fullscreenButton.addEventListener('click', fullscreen);
         changeSpeedButtons.forEach((item) => {
             item.addEventListener('click', changeVideoSpeed);
         });
