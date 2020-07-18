@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fullscreenButton = document.querySelector('#fullscreen-button');
     const volumeBar = document.querySelector('#volume-bar');
     const playProgressBar = document.querySelector('#play-progress-bar');
+    const changeSpeedButtons = document.querySelectorAll('.change-speed-button');
 
     const play = () => {
         video.play();
@@ -38,6 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const changeVideoSpeed = (event) => {
+        video.playbackRate = event.target.dataset.value;
+    };
+
     const addHandlers = () => {
         playButton.addEventListener('click', play);
         pauseButton.addEventListener('click', pause);
@@ -45,6 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
         video.addEventListener('timeupdate', progressBarUpdate);
         playProgressBar.addEventListener('input', videoRewind);
         fullscreenButton.addEventListener('click', enterFullscreen);
+        changeSpeedButtons.forEach((item) => {
+            item.addEventListener('click', changeVideoSpeed);
+        });
     };
 
     addHandlers();

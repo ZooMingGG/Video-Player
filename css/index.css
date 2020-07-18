@@ -18,10 +18,23 @@ body {
     margin: 60px auto;
 }
 
+#video-player:fullscreen {
+    background-color: red; 
+    padding: 0 0 0 0;
+}
+
+.fullscreen-video {
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
 #video-player video {
     display: block;
-    width: 680px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0 auto 5px;
 }
 
 button {
