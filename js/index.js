@@ -12,14 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const play = () => {
         video.play();
+
         playButton.classList.add('hidden');
         pauseButton.classList.remove('hidden');
+
+        video.dataset.status = 'playing';
     };
 
     const pause = () => {
         video.pause();
+
         pauseButton.classList.add('hidden');
         playButton.classList.remove('hidden');
+
+        video.dataset.status = 'paused';
     };
 
     const changeVolume = (event) => {
@@ -60,11 +66,20 @@ document.addEventListener('DOMContentLoaded', () => {
         video.playbackRate = event.target.dataset.value;
     };
 
+    const changeVideoStatus = () => {
+        if (video.dataset.status === 'paused') {
+            play();
+        } else {
+            pause();
+        }
+    };
+
     const addHandlers = () => {
         playButton.addEventListener('click', play);
         pauseButton.addEventListener('click', pause);
         volumeBar.addEventListener('input', changeVolume);
         video.addEventListener('timeupdate', progressBarUpdate);
+        video.addEventListener('click', changeVideoStatus);
         playProgressBar.addEventListener('input', videoRewind);
         fullscreenButton.addEventListener('click', fullscreen);
         changeSpeedButtons.forEach((item) => {
