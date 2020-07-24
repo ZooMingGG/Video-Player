@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pauseButton = document.querySelector('#pause-button');
     const fullscreenButton = document.querySelector('#fullscreen-button');
     const volumeBar = document.querySelector('#volume-bar');
+    const volumeBtn = document.querySelector('#volume-btn');
     const playProgressBar = document.querySelector('#play-progress-bar');
     const controlPanel = document.querySelector('#controls');
     const changeSpeedButtons = document.querySelectorAll('.change-speed-button');
@@ -30,6 +31,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const changeVolume = (event) => {
         video.volume = event.target.value / 100;
+
+        volumeBtn.dataset.muted = 'false';
+
+        volumeBtn.src = './images/volume.svg';
+    };
+
+    const muteVolume = () => {
+        let volumeValue = volumeBar.value / 100;
+
+        if (volumeBtn.dataset.muted === 'false') {
+            volumeBtn.dataset.muted = 'true';
+
+            video.volume = 0;
+
+            volumeBtn.src = './images/volume-muted.svg';
+        } else {
+            volumeBtn.dataset.muted = 'false';
+
+            video.volume = volumeValue;
+            
+            volumeBtn.src = './images/volume.svg';
+        }
     };
 
     const progressBarUpdate = () => {
@@ -78,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playButton.addEventListener('click', play);
         pauseButton.addEventListener('click', pause);
         volumeBar.addEventListener('input', changeVolume);
+        volumeBtn.addEventListener('click', muteVolume);
         video.addEventListener('timeupdate', progressBarUpdate);
         video.addEventListener('click', changeVideoStatus);
         playProgressBar.addEventListener('input', videoRewind);
